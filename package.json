@@ -1,10 +1,58 @@
 {
   "name": "e-store-backend",
   "version": "0.1.0",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "bin": {
+    "e-store-backend": "bin/index.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "test:ci": "jest --ci --runInBand --detectOpenHandles --coverage",
+    "type-check": "tsc --project tsconfig.json --pretty --noEmit",
+    "lint": "eslint . --ext js,jsx,ts,tsx --fix",
+    "cdk": "cdk --profile aws-cli-v2",
+    "deploy": "cdk deploy --require-approval never --hotswap --outputs-file ./cdk-outputs.json"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-apigatewayv2-alpha": "^2.20.0-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-authorizers-alpha": "^2.20.0-alpha.0",
+    "@aws-cdk/aws-apigatewayv2-integrations-alpha": "^2.20.0-alpha.0",
+    "@aws-sdk/client-cognito-identity-provider": "^3.81.0",
+    "@aws-sdk/client-dynamodb": "^3.85.0",
+    "@aws-sdk/util-dynamodb": "^3.85.0",
+    "aws-cdk": "^2.23.0",
+    "aws-cdk-lib": "^2.20.0",
+    "aws-sdk": "^2.1125.0",
+    "constructs": "^10.0.112",
+    "source-map-support": "^0.5.21",
+    "stripe": "^9.1.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "^2.24.1",
+    "@types/aws-lambda": "8.10.75",
+    "@types/cookie": "0.4.1",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.23",
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "aws-jwt-verify": "^3.1.0",
+    "aws-lambda": "1.0.6",
+    "cookie": "0.4.1",
+    "email-validator": "^2.0.4",
+    "esbuild": "^0.14.36",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
+    "prettier": "^2.6.2",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
 }
