@@ -14,3 +14,16 @@ export const origins = [
   'https://app.e-store.gq',
   'https://en.e-store.gq:3000',
 ];
+export const constants = {
+  readsPerQuery: 10,
+  orderTable: 'orderTable',
+  productTable: 'productTable',
+  cartIntent: 'cart',
+  cartStatus: 'IN CART',
+  orderLogs: '-',
+  categoryIndex: 'category-index',
+  groups: {
+    admin: 'admin_group',
+    product: 'manage_product_group',
+  },
+};
