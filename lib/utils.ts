@@ -27,3 +27,6 @@ export const constants = {
     product: 'manage_product_group',
   },
 };
+export const S3Constants = {
+  productImages: 'bucket-product-images',
+};
