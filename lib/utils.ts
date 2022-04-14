@@ -1,3 +1,5 @@
+import {APIGatewayProxyEventV2} from 'aws-lambda/trigger/api-gateway-proxy';
+
 /*
 Types
 */
@@ -7,6 +9,20 @@ export interface KeyValue<T = string> {
 /*
 Method
 */
+export const getCookieValue = (
+  event: APIGatewayProxyEventV2,
+  key: typeof tokenParams[number],
+) => {
+  if (!event.cookies) return '';
+  const {cookies} = event;
+  const search = `${key.toLowerCase()}=`;
+  for (const cookie of cookies) {
+    if (cookie.toLowerCase().startsWith(search)) {
+      return cookie.substring(search.length);
+    }
+  }
+  return '';
+};
 /*
 Constants
 */
@@ -33,3 +49,11 @@ export const constants = {
 export const S3Constants = {
   productImages: 'bucket-product-images',
 };
+export const tokenDomain = '.e-store.gq';
+const tokenParams = [
+  'AccessToken',
+  // 'ExpiresIn',
+  'IdToken',
+  'RefreshToken',
+  // 'TokenType',
+] as const;
