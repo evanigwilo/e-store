@@ -1,4 +1,14 @@
-import {APIGatewayProxyEventV2} from 'aws-lambda/trigger/api-gateway-proxy';
+import {
+  APIGatewayProxyEventV2,
+  APIGatewayProxyResult,
+} from 'aws-lambda/trigger/api-gateway-proxy';
+import {
+  AuthenticationResultType,
+  GetUserCommandOutput,
+  GroupType,
+} from '@aws-sdk/client-cognito-identity-provider';
+
+import cookie from 'cookie';
 
 /*
 Types
@@ -22,6 +32,79 @@ export const getCookieValue = (
     }
   }
   return '';
+};
+export const lambdaResponse = (
+  value: any,
+  statusCode: number,
+  contentType: KeyValue = {'Content-Type': 'application/json'},
+): APIGatewayProxyResult => {
+  // if (statusCode === 400 || statusCode === 500) {
+  //   value = {
+  //     error: value,
+  //   };
+  // }
+  return {
+    headers: contentType,
+    body: JSON.stringify(value),
+    statusCode,
+  } as APIGatewayProxyResult;
+};
+export const tokensToCookies = (tokens?: AuthenticationResultType) => {
+  const cookies: string[] = [];
+  const options: cookie.CookieSerializeOptions = {
+    httpOnly: true,
+    // Safari does not save cookies if sameSite:secure and client is not https://
+    secure: true,
+    sameSite: 'strict',
+    path: '/',
+    domain: tokenDomain,
+  };
+  if (!tokens) {
+    tokenParams.forEach(token => {
+      cookies.push(
+        cookie.serialize(token, '', {
+          maxAge: 0,
+          ...options,
+        }),
+      );
+    });
+  } else {
+    tokenParams.forEach(token => {
+      const value = tokens[token as keyof typeof tokens] as string;
+      if (value) {
+        cookies.push(
+          cookie.serialize(token, value, {
+            // in seconds
+            maxAge: 60 * 60 * 24, // 1day
+            ...options,
+          }),
+        );
+      }
+    });
+  }
+  return cookies;
+};
+export const userProperties = (
+  groups?: GroupType[],
+  user?: GetUserCommandOutput,
+) => {
+  const admin =
+    groups?.some(({GroupName}) => GroupName === constants.groups.admin) ===
+    true;
+  const manageProducts =
+    groups?.some(({GroupName}) => GroupName === constants.groups.product) ===
+    true;
+  const emailVerified =
+    user?.UserAttributes?.find(
+      ({Name, Value}) => Name === 'email_verified' && Value === 'true',
+    )?.Value === 'true';
+
+  return {
+    admin,
+    manageProducts,
+    emailVerified,
+    username: user?.Username,
+  };
 };
 /*
 Constants
