@@ -16,6 +16,15 @@ Types
 export interface KeyValue<T = string> {
   [key: string]: T;
 }
+export interface LambdaRequestContext {
+  lambda: {
+    accessPayload: {
+      'cognito:groups'?: string[];
+      username?: string;
+    };
+    user?: GetUserCommandOutput;
+  };
+}
 /*
 Method
 */
