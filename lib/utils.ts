@@ -115,6 +115,24 @@ export const userProperties = (
     username: user?.Username,
   };
 };
+export const isAdmin = (event: APIGatewayProxyEventV2) => {
+  const claims = event.requestContext
+    .authorizer as unknown as LambdaRequestContext;
+  return (
+    claims?.lambda.accessPayload['cognito:groups']?.includes(
+      constants.groups.admin,
+    ) === true
+  );
+
+  /*
+  const claims = event.requestContext.authorizer?.jwt.claims;
+  return (
+    claims &&
+    typeof claims['cognito:groups'] === 'string' &&
+    claims['cognito:groups'].includes('admin_group')
+  );
+  */
+};
 /*
 Constants
 */
