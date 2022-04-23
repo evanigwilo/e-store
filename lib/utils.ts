@@ -16,6 +16,8 @@ import {
   ScanCommand,
   UpdateItemCommandInput,
   UpdateItemCommand,
+  BatchGetItemCommandInput,
+  BatchGetItemCommand,
 } from '@aws-sdk/client-dynamodb';
 import {marshall, unmarshall} from '@aws-sdk/util-dynamodb';
 
@@ -46,6 +48,34 @@ export type ProductTable = ImageSlot & {
   price: number;
   createdAt: number;
 };
+interface OrderTableOrders {
+  productId: string;
+  name: string;
+  category: string;
+  price: number;
+  count: number;
+  slot: number;
+}
+interface OrderLocation {
+  country: string;
+  // city: string,
+  address: string;
+}
+export interface Orders {
+  productId: string;
+  count: number;
+}
+export interface OrderTable {
+  user: string;
+  orders: OrderTableOrders[];
+  amount: number;
+  status: string;
+  logs: string;
+  intent: string;
+  createdAt: number;
+  location?: OrderLocation;
+}
+export type OrderTableKeys = keyof OrderTable;
 /*
 Method
 */
@@ -282,6 +312,46 @@ export const propTrim = (obj: any) => {
     }
   }
 };
+export const imageToSlot = (obj: ImageSlot) => {
+  const slot = obj.image_1 ? 1 : obj.image_2 ? 2 : obj.image_3 ? 3 : 0;
+  return slot;
+};
+export const getProductsById = async (
+  id: string[],
+  ddbClient: DynamoDBClient,
+) => {
+  const {productTable} = constants;
+  const products: KeyValue<ProductTable> = {};
+  const size = 100; // GetItem in Batches of 100
+  for (let i = 0; i < id.length; i += size) {
+    const ids = id.slice(i, i + size).map(productId => {
+      return {id: {S: productId}};
+    });
+    const params: BatchGetItemCommandInput = {
+      RequestItems: {
+        [productTable]: {
+          Keys: ids,
+          ProjectionExpression:
+            'id, #name, category, price, image_1, image_2, image_3',
+          ExpressionAttributeNames: {
+            '#name': 'name',
+          },
+        },
+      },
+    };
+    const createResult = await ddbClient.send(new BatchGetItemCommand(params));
+    // console.log({createResult});
+    const response = createResult.Responses;
+    // console.log({response});
+
+    response &&
+      response[productTable].forEach(currentItem => {
+        const item = unmarshall(currentItem) as ProductTable;
+        products[item.id] = item;
+      });
+  }
+  return products;
+};
 /*
 Constants
 */
@@ -328,3 +398,9 @@ export const supportedCategories = [
   'Fashion',
   'Sports & Outdoors',
 ];
+export enum PaymentStatus {
+  CREATED,
+  CANCELED,
+  SUCCEEDED,
+  FAILED,
+}
