@@ -76,6 +76,13 @@ export interface OrderTable {
   location?: OrderLocation;
 }
 export type OrderTableKeys = keyof OrderTable;
+interface Country {
+  code: string;
+  name: string;
+  emoji: string;
+  unicode: string;
+  image: string;
+}
 /*
 Method
 */
@@ -404,3 +411,101 @@ export enum PaymentStatus {
   SUCCEEDED,
   FAILED,
 }
+export const supportedCountries: Country[] = [
+  {
+    code: 'US',
+    name: 'United States',
+    emoji: '🇺🇸',
+    unicode: 'U+1F1FA U+1F1F8',
+    image:
+      'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/US.svg',
+  },
+  {
+    code: 'CN',
+    name: 'China',
+    emoji: '🇨🇳',
+    unicode: 'U+1F1E8 U+1F1F3',
+    image:
+      'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CN.svg',
+  },
+  {
+    code: 'JP',
+    name: 'Japan',
+    emoji: '🇯🇵',
+    unicode: 'U+1F1EF U+1F1F5',
+    image:
+      'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JP.svg',
+  },
+  {
+    code: 'DE',
+    name: 'Germany',
+    emoji: '🇩🇪',
+    unicode: 'U+1F1E9 U+1F1EA',
+    image:
+      'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DE.svg',
+  },
+  {
+    code: 'GB',
+    name: 'United Kingdom',
+    emoji: '🇬🇧',
+    unicode: 'U+1F1EC U+1F1E7',
+    image:
+      'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GB.svg',
+  },
+  {
+    code: 'IN',
+    name: 'India',
+    emoji: '🇮🇳',
+    unicode: 'U+1F1EE U+1F1F3',
+    image:
+      'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IN.svg',
+  },
+  {
+    code: 'FR',
+    name: 'France',
+    emoji: '🇫🇷',
+    unicode: 'U+1F1EB U+1F1F7',
+    image:
+      'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FR.svg',
+  },
+  {
+    code: 'IT',
+    name: 'Italy',
+    emoji: '🇮🇹',
+    unicode: 'U+1F1EE U+1F1F9',
+    image:
+      'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IT.svg',
+  },
+  {
+    code: 'NG',
+    name: 'Nigeria',
+    emoji: '🇳🇬',
+    unicode: 'U+1F1F3 U+1F1EC',
+    image:
+      'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NG.svg',
+  },
+  {
+    code: 'EG',
+    name: 'Egypt',
+    emoji: '🇪🇬',
+    unicode: 'U+1F1EA U+1F1EC',
+    image:
+      'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EG.svg',
+  },
+  {
+    code: 'ZA',
+    name: 'South Africa',
+    emoji: '🇿🇦',
+    unicode: 'U+1F1FF U+1F1E6',
+    image:
+      'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZA.svg',
+  },
+  {
+    code: 'GH',
+    name: 'Ghana',
+    emoji: '🇬🇭',
+    unicode: 'U+1F1EC U+1F1ED',
+    image:
+      'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GH.svg',
+  },
+];
