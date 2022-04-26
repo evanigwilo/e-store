@@ -22,6 +22,8 @@ import {
 import {marshall, unmarshall} from '@aws-sdk/util-dynamodb';
 
 import cookie from 'cookie';
+import SSM from 'aws-sdk/clients/ssm';
+import Stripe from 'stripe';
 
 /*
 Types
@@ -358,6 +360,22 @@ export const getProductsById = async (
       });
   }
   return products;
+};
+export const stripe = (apiKey: string) => {
+  const stripe = new Stripe(apiKey, {
+    apiVersion: '2020-08-27',
+    typescript: true,
+  });
+  return stripe;
+};
+export const loadConfig = async function (parameterName: string) {
+  const ssm = new SSM();
+  const {Parameter} = await ssm
+    .getParameter({Name: parameterName, WithDecryption: true})
+    .promise();
+  const value = Parameter?.Value;
+  if (!value) return '';
+  return JSON.parse(value);
 };
 /*
 Constants
