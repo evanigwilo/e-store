@@ -1,0 +1,123 @@
+@keyframes animate-colors {
+  0% {
+    /* background-size: 200% 200%; */
+    transform: translateY(0);
+  }
+  50% {
+    /* background-size: 200% 100%; */
+    transform: translateY(-200vh);
+  }
+  100% {
+    /* background-size: 200% 200%; */
+    transform: translateY(0);
+  }
+}
+
+.animate-colors {
+  position: fixed;
+  width: 100%;
+  height: 300vh;
+  z-index: -1;
+  background: linear-gradient(var(--bs-gray-300) 0%, white 100%);
+  /* background-color: var(--dark-light); */
+  /* top: -300px;
+   left: -20vw;
+   width: 200vw;
+   height: 365px;
+   transform: rotate(340deg); */
+  /* background-position-y: 100% !important; */
+  /* opacity: 0.15;*/
+  /* linear-gradient(#b5cad8 0%, #c1c8d2 75%, rgb(0 0 0 / 0%) 100%); */
+  /* animation: animate-colors 10s ease infinite; */
+}
+
+.clip-1,
+.clip-2,
+.clip-3 {
+  opacity: 0.8;
+  position: fixed;
+  height: 365px;
+  width: 100%;
+  z-index: -1;
+}
+.clip-1 {
+  background-color: var(--blue);
+  clip-path: polygon(
+    64.47% 50.21%,
+    59.9% 41.43%,
+    100% 20.57%,
+    100% 31.75%,
+    28.94% 68.68%,
+    33.2% 76.89%,
+    0% 94.14%,
+    0% 83.75%
+  );
+}
+.clip-2 {
+  background-color: var(--blue-dark);
+  clip-path: polygon(23.83% 65.62%, 27.77% 73.21%, 7.89% 83.54%, 3.95% 75.95%);
+}
+.clip-3 {
+  --color: var(--bs-gray-100);
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0) 0%,
+    var(--color) 100%,
+    var(--color) 100%,
+    rgba(0, 0, 0, 0)
+  );
+  clip-path: polygon(
+    28.86% 68.74%,
+    59.9% 41.43%,
+    100% 20.57%,
+    100% 0%,
+    28.86% 68.74%,
+    100% 0%,
+    0% 0%,
+    0% 83.75%
+  );
+}
+.flip-0 {
+  transform: scale(-1);
+  top: 0;
+}
+.flip-1 {
+  transform: scale(1, -1);
+  top: 0;
+}
+.flip-2 {
+  transform: scale(-1, 1);
+  top: -10%;
+}
+.flip-3 {
+  transform: scale(-1);
+  top: 15%;
+}
+.flip-4 {
+  transform: scale(1, -1);
+  top: 15%;
+}
+.flip-5 {
+  transform: scale(-1, 1);
+  top: 15%;
+}
+.flip-6 {
+  transform: scale(-1);
+  top: 35%;
+}
+.flip-7 {
+  transform: scale(1, -1);
+  top: 35%;
+}
+.flip-8 {
+  transform: scale(-1, 1);
+  top: 35%;
+}
+.flip-9 {
+  top: -10%;
+}
+.flip-10 {
+  top: 15%;
+}
+.flip-11 {
+  top: 35%;
+}

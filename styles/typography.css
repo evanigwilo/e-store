@@ -1,0 +1,27 @@
+/* xs < 768 */
+@media screen and (max-width: 767px) {
+  body {
+    font-size: 0.7em !important;
+  }
+}
+
+/* sm */
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 0.8em !important;
+  }
+}
+
+/* md */
+@media screen and (min-width: 992px) {
+  body {
+    font-size: 0.9em !important;
+  }
+}
+
+/* lg */
+@media screen and (min-width: 1200px) {
+  body {
+    font-size: 1em !important;
+  }
+}

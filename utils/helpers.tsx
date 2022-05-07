@@ -1,6 +1,8 @@
 import { IncomingMessage } from "http";
 import { AxiosError, AxiosRequestConfig } from "axios";
 
+import Spinner from "react-bootstrap/Spinner";
+
 import axios from "../services/axios";
 import { AuthenticatedResult, KeyValue } from "./types";
 
@@ -52,4 +54,27 @@ export const authenticationError = (value: KeyValue, error: KeyValue) => {
 export const rejectError = (error: unknown) => {
   const response = (error as AxiosError).response;
   return response?.data as KeyValue;
+};
+
+export const Progress = (size?: "sm") => (
+  <Spinner
+    animation="border"
+    size={size}
+    style={{
+      borderWidth: "0.1em",
+      cursor: "progress",
+    }}
+    className="align-middle"
+  />
+);
+
+export const progressButton = (
+  pending: boolean,
+  text: string
+): JSX.Element | string => (pending ? Progress("sm") : text);
+
+// 👇 random backdrops
+export const flipRandomly = () => {
+  const number = Math.floor(Math.random() * 100);
+  return "flip-" + Math.floor(number * (12 / 100));
 };

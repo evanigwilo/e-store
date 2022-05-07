@@ -28,3 +28,8 @@ export interface CountryResult {
   countries: CountryType[];
   country: string;
 }
+
+export interface AppTitleProps {
+  hoverEffect?: boolean;
+  className?: string;
+}

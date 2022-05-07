@@ -1,0 +1,14 @@
+.transform-title {
+  transform-origin: left;
+  transform: perspective(20px) rotateY(3deg) translateZ(7px);
+}
+.transform-title-reset {
+  transition: transform 0.1s ease-in-out;
+  cursor: pointer;
+}
+.transform-title-reset:hover {
+  transform: perspective(20px) translateZ(3px) translateX(-2px);
+}
+.transform-title-reset:hover:active {
+  transform: perspective(20px) translateZ(3px) scale(0.95);
+}
