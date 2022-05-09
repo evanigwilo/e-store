@@ -1,7 +1,9 @@
 import { IncomingMessage } from "http";
 import { AxiosError, AxiosRequestConfig } from "axios";
 
+import Collapse from "react-bootstrap/Collapse";
 import Spinner from "react-bootstrap/Spinner";
+import Form from "react-bootstrap/Form";
 
 import axios from "../services/axios";
 import { AuthenticatedResult, KeyValue } from "./types";
@@ -78,3 +80,20 @@ export const flipRandomly = () => {
   const number = Math.floor(Math.random() * 100);
   return "flip-" + Math.floor(number * (12 / 100));
 };
+
+export const collapseElement = (
+  open?: boolean,
+  message?: string,
+  margin = "mt-2"
+) => (
+  <Collapse in={open}>
+    <div>
+      <Form.Text className={`${margin} text-danger d-block`}>
+        <span className="d-flex">
+          <i className="bi bi-exclamation-triangle-fill me-1"></i>
+          {message}
+        </span>
+      </Form.Text>
+    </div>
+  </Collapse>
+);
