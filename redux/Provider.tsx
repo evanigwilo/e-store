@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-import { store } from "./store";
+import { store, persistor } from "./store";
 import { userActions } from "./reducer/userSlice";
 import { isUserAuthenticated } from "../utils/helpers";
 import { Props } from "../utils/types";
@@ -28,7 +29,9 @@ export default function ({ children }: Props) {
 
   return (
     <Provider store={store}>
-      <Elements stripe={stripePromise}>{children}</Elements>
+      <PersistGate loading={null} persistor={persistor}>
+        <Elements stripe={stripePromise}>{children}</Elements>
+      </PersistGate>
     </Provider>
   );
 }
