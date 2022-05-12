@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 
 import axios from "../services/axios";
 import { AuthenticatedResult, KeyValue } from "./types";
+import { debounceId } from "./constants";
 
 // 👇 check user authentication status
 export const isUserAuthenticated = async (
@@ -97,3 +98,22 @@ export const collapseElement = (
     </div>
   </Collapse>
 );
+
+// 👇 debounce() function to forces a function to wait a certain amount of time before running again
+export const debounce = (
+  id: "UPDATE_TOTAL" | "FIND_PRODUCT",
+  callback: () => void,
+  delay: number = 500
+) => {
+  debounceId[id] = debounceId[id] || {
+    timeout: undefined,
+    delay,
+  };
+
+  const getID = debounceId[id];
+
+  // clear the timeout
+  getID.timeout && clearTimeout(getID.timeout);
+  // start timing for event "completion"
+  getID.timeout = setTimeout(() => callback(), getID.delay);
+};

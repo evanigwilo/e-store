@@ -83,3 +83,18 @@ export type Product = ImageSlot & {
 };
 
 export type Selector<S> = (state: RootState) => S;
+
+export interface ToastProp {
+  message: string;
+  delay?: number;
+  onClose?: () => void;
+}
+
+export interface ToastMessages {
+  messages: ToastProp[];
+}
+
+export interface IDeBounceVariables {
+  timeout?: NodeJS.Timeout; // reference for timeout
+  delay: number; // delay timer
+}
