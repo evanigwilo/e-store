@@ -1,0 +1,17 @@
+.modal-delete > div > div {
+  border-radius: 0.8rem !important;
+  border: none !important;
+  /* padding: 0 0.5rem !important; */
+}
+.modal-form > div > div {
+  margin: auto;
+  width: 300px;
+}
+.modal-delete > div {
+  margin: auto;
+  width: 350px;
+  /* top: 50%; */
+}
+.modal-delete {
+  backdrop-filter: brightness(0.8);
+}

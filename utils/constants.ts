@@ -19,3 +19,5 @@ export const rowStyle = {
 
 export const rowClass =
   "g-0 text-center py-2 align-items-center text-secondary";
+
+export const slotCount = [1, 2, 3];

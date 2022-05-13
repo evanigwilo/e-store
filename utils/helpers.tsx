@@ -99,6 +99,14 @@ export const collapseElement = (
   </Collapse>
 );
 
+export const getImageUrl = (id: string, slot: number, randomTime: number) =>
+  `https://${process.env.NEXT_PUBLIC_S3_BUCKET_NAME}.s3.amazonaws.com/` +
+  id +
+  "/" +
+  slot +
+  "?" +
+  randomTime; // 👉 to trigger image reload
+
 // 👇 debounce() function to forces a function to wait a certain amount of time before running again
 export const debounce = (
   id: "UPDATE_TOTAL" | "FIND_PRODUCT",
@@ -117,3 +125,12 @@ export const debounce = (
   // start timing for event "completion"
   getID.timeout = setTimeout(() => callback(), getID.delay);
 };
+
+export const reduceToValue = <V extends unknown>(
+  collection: Array<string | number>,
+  value: () => V
+) =>
+  collection.reduce((previousValue, currentValue) => {
+    previousValue[currentValue] = value();
+    return previousValue;
+  }, {} as { [key: string]: V });

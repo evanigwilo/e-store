@@ -1,0 +1,12 @@
+.border-image-style:active,
+.border-image-style:hover {
+  border-style: groove !important;
+  padding: 1.5px !important;
+  box-shadow: 0px 0px 0px 0px;
+  /* -webkit-text-stroke: 1px; */
+}
+
+.border-image-size {
+  height: 35px !important;
+  width: 45px !important;
+}

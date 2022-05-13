@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import { RootState } from "@/redux/store";
 
 export interface KeyValue<T = string> {
@@ -97,4 +97,23 @@ export interface ToastMessages {
 export interface IDeBounceVariables {
   timeout?: NodeJS.Timeout; // reference for timeout
   delay: number; // delay timer
+}
+
+export interface DeleteModalProps {
+  onClickDelete?: () => void;
+  onExit?: () => void;
+  loading: boolean;
+  message: string;
+  error?: string;
+  show: boolean;
+  setShow: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface ImagePreviewProps {
+  src: string;
+  show: number;
+  setShow: Dispatch<SetStateAction<number>>;
+  closeButton?: boolean;
+  htmlFor?: string;
+  htmlForProgress?: boolean;
 }

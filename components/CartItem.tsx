@@ -8,10 +8,16 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { cartUpdateAsync, selectCart } from "../redux/reducer/cartSlice";
-import { debounce, Progress } from "../utils/helpers";
+import {
+  cartRemoveAsync,
+  cartUpdateAsync,
+  selectCart,
+} from "../redux/reducer/cartSlice";
+import { debounce, getImageUrl, Progress } from "../utils/helpers";
 import { OrderOrders } from "../utils/types";
 import { rowClass, rowStyle } from "../utils/constants";
+import ImageColumn from "./ImageColumn";
+import DeleteModal from "./DeleteModal";
 
 const CartItem: NextComponentType<
   NextPageContext,
@@ -72,7 +78,13 @@ const CartItem: NextComponentType<
   return (
     <>
       <Row className={rowClass} style={rowStyle}>
-        {/* Image column */}
+        <ImageColumn
+          url={
+            slot ? getImageUrl(productId, slot, randomTime.current) : undefined
+          }
+          title={name}
+          text={category}
+        />
 
         <Col xs={3} className="text-break">
           {numeral(price).format("$0,0.[00]")}
@@ -125,7 +137,16 @@ const CartItem: NextComponentType<
         </Col>
       </Row>
 
-      {/* Delete modal */}
+      <DeleteModal
+        show={showRemove}
+        setShow={setShowRemove}
+        message={`Remove ${name} from cart ?`}
+        loading={cartPending}
+        onClickDelete={() => {
+          dispatch(cartRemoveAsync({ productId }));
+          setShowRemove(false);
+        }}
+      />
     </>
   );
 };

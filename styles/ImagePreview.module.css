@@ -1,0 +1,31 @@
+.modal-transparent {
+  --backdrop-filter: brightness(0.8);
+  backdrop-filter: var(--backdrop-filter) !important;
+  -webkit-backdrop-filter: var(--backdrop-filter) !important;
+}
+.modal-transparent > div > div {
+  background-color: rgba(var(--bs-dark-rgb), 0.95) !important;
+  border-radius: 15px !important;
+
+  height: 75vh !important;
+  margin: 0 15vw;
+
+  --backdrop-filter: blur(1px);
+  backdrop-filter: var(--backdrop-filter) !important;
+  -webkit-backdrop-filter: var(--backdrop-filter) !important;
+}
+.modal-transparent button {
+  margin: 0 !important;
+  opacity: 1 !important;
+  filter: invert(1);
+  /* background-color: rgba(var(--bs-light-rgb), 1) !important; */
+
+  transition: transform 0.05s ease-out;
+}
+
+.modal-transparent button:hover {
+  transform: scale(1.2) !important;
+}
+.modal-transparent button:hover:active {
+  transform: scale(1) !important;
+}
