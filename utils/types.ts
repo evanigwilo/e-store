@@ -117,3 +117,8 @@ export interface ImagePreviewProps {
   htmlFor?: string;
   htmlForProgress?: boolean;
 }
+
+export interface QueryProduct {
+  lastKey: KeyValue<KeyValue>;
+  queryResult: Product[];
+}

@@ -15,6 +15,7 @@ import {
 import userSlice from "./reducer/userSlice";
 import cartSlice from "./reducer/cartSlice";
 import paymentSlice from "./reducer/paymentSlice";
+import productSlice from "./reducer/productSlice";
 
 const rootReducer = combineReducers({
   user: userSlice,
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
     cartSlice
   ), //cartSlice,
   payment: paymentSlice,
+  product: productSlice,
 });
 
 export const store = configureStore({
