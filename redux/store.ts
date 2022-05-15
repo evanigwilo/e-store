@@ -11,11 +11,13 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+//import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
 
 import userSlice from "./reducer/userSlice";
 import cartSlice from "./reducer/cartSlice";
 import paymentSlice from "./reducer/paymentSlice";
 import productSlice from "./reducer/productSlice";
+import { querySlice } from "./reducer/querySlice";
 
 const rootReducer = combineReducers({
   user: userSlice,
@@ -30,6 +32,7 @@ const rootReducer = combineReducers({
   ), //cartSlice,
   payment: paymentSlice,
   product: productSlice,
+  [querySlice.reducerPath]: querySlice.reducer,
 });
 
 export const store = configureStore({
@@ -53,7 +56,9 @@ export const store = configureStore({
         warnAfter: 128,
       },
       immutableCheck: { warnAfter: 128 },
-    }).concat(thunk),
+    })
+      .concat(querySlice.middleware)
+      .concat(thunk),
 });
 
 export const persistor = persistStore(store);

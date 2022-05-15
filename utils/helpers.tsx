@@ -6,7 +6,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
 
 import axios from "../services/axios";
-import { AuthenticatedResult, KeyValue } from "./types";
+import { AuthenticatedResult, KeyValue, Product } from "./types";
 import { debounceId } from "./constants";
 
 // 👇 check user authentication status
@@ -134,3 +134,11 @@ export const reduceToValue = <V extends unknown>(
     previousValue[currentValue] = value();
     return previousValue;
   }, {} as { [key: string]: V });
+
+export const editImage = (
+  product: Partial<Product> | KeyValue<boolean>,
+  slot: string,
+  action: "ADD" | "REMOVE"
+) => {
+  (product as KeyValue<boolean>)["image_" + slot] = action === "ADD";
+};

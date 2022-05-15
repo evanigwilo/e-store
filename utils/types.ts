@@ -122,3 +122,28 @@ export interface QueryProduct {
   lastKey: KeyValue<KeyValue>;
   queryResult: Product[];
 }
+
+export interface ToastStatusUpdate {
+  product: Partial<Product>;
+  image: KeyValue<"ADD" | "REMOVE">;
+}
+
+export interface ToastController {
+  uploading: number;
+  update: ToastStatusUpdate;
+}
+
+export interface QueryOrder {
+  lastKey: KeyValue<KeyValue>;
+  queryResult: Order[];
+}
+
+export interface QueryParams {
+  productId?: string;
+  sort?: string;
+  category?: string;
+  limit?: number;
+  body?: KeyValue<KeyValue>;
+  key: number;
+  page: number;
+}
