@@ -147,3 +147,13 @@ export interface QueryParams {
   key: number;
   page: number;
 }
+
+export interface QueryParams {
+  productId?: string;
+  sort?: string;
+  category?: string;
+  limit?: number;
+  body?: KeyValue<KeyValue>;
+  key: number;
+  page: number;
+}

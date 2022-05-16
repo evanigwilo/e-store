@@ -1,13 +1,16 @@
 import { IncomingMessage } from "http";
 import { AxiosError, AxiosRequestConfig } from "axios";
+import { SetStateAction } from "react";
+import { SerializedError } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 
 import Collapse from "react-bootstrap/Collapse";
 import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
 
 import axios from "../services/axios";
-import { AuthenticatedResult, KeyValue, Product } from "./types";
-import { debounceId } from "./constants";
+import { AuthenticatedResult, KeyValue, Product, QueryParams } from "./types";
+import { debounceId, statusStyle } from "./constants";
 
 // 👇 check user authentication status
 export const isUserAuthenticated = async (
@@ -142,3 +145,49 @@ export const editImage = (
 ) => {
   (product as KeyValue<boolean>)["image_" + slot] = action === "ADD";
 };
+
+// 👇 function to check if the product has image with the specified slot
+export const hasImage = (
+  product: Partial<Product> | KeyValue<boolean>,
+  slot: number
+) => Boolean((product as KeyValue<boolean>)["image_" + slot]);
+
+// 👇 function to trigger fetching more data
+export const nextPage = (
+  error: FetchBaseQueryError | SerializedError | undefined,
+  lastKey: KeyValue<KeyValue<string>> | undefined,
+  inViewOrLoading: boolean,
+  setQueryParams: (value: SetStateAction<QueryParams>) => void
+) => {
+  if (inViewOrLoading || !lastKey || error) {
+    return;
+  }
+  setQueryParams((prev) => ({
+    ...prev,
+    body: lastKey,
+    page: prev.page + 1,
+  }));
+};
+
+// 👇 function to trigger fetching more data when user scrolls to end of page
+export const inViewStatus = (
+  ref: (node?: Element | null) => void,
+  loading: boolean,
+  items: boolean,
+  text: string,
+  error?: FetchBaseQueryError | SerializedError,
+  custom?: string
+) => (
+  <div ref={ref} className={statusStyle}>
+    {loading ? (
+      Progress()
+    ) : (
+      <span className={error && "text-danger"}>
+        {custom ||
+          (error
+            ? `Error: ${(error as KeyValue).unknown}`
+            : `${items ? `No more ${text}s` : `No ${text}`}`)}
+      </span>
+    )}
+  </div>
+);
