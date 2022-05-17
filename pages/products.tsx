@@ -14,7 +14,12 @@ import Button from "react-bootstrap/Button";
 // 👇 React Intersection Observer module
 import { useInView } from "react-intersection-observer";
 // 👇 Custom modules
-import { KeyValue, Product, QueryParams } from "../utils/types";
+import {
+  KeyValue,
+  Product,
+  QueryParams,
+  ToastStatusUpdate,
+} from "../utils/types";
 import ManageRow from "../components/ManageRow";
 import {
   getImageUrl,
@@ -23,9 +28,14 @@ import {
   inViewStatus,
   isUserAuthenticated,
 } from "../utils/helpers";
-import { useProductsQuery } from "../redux/reducer/querySlice";
+import {
+  useProductsQuery,
+  updateProduct,
+  removeProduct,
+} from "../redux/reducer/querySlice";
 import { appTitle, categoryType, darkOpacityText } from "../utils/constants";
 import { slotCount } from "../utils/constants";
+import ManageProduct from "../components/ManageProduct";
 
 // 👇 ssr: check if user is authorized to manage products
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -192,6 +202,18 @@ const Products: NextPage = () => {
       </Container>
 
       {/* Manage product modal */}
+      {manageProduct && (
+        <ManageProduct
+          router={router}
+          filter={filter.current === allProducts ? "" : filter.current}
+          productId={id as string}
+          removeProduct={(id: string) => removeProduct(id, queryParams)}
+          updateProduct={(update: ToastStatusUpdate) => {
+            randomTime.current = Date.now();
+            updateProduct(update, queryParams);
+          }}
+        />
+      )}
     </div>
   );
 };

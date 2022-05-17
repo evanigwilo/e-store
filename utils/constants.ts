@@ -75,3 +75,12 @@ export const categoryType = {
       "Shop Academy Sports + Outdoors for sporting goods, hunting, fishing and camping equipment. Find recreation and leisure products, footwear, apparel and more!",
   },
 };
+
+export enum ImageSlotActionType {
+  LOADIMAGE = "CLEAR_ERROR->LOAD_URL",
+  FILECHANGE = "REVOKE_URL->REMOVE_FILE->UPDATE_URL->UPDATE_ERROR",
+  CLEARIMAGE = "REVOKE_URL->CLEAR_IMAGE->HIDE_ERROR",
+}
+
+export const mimeTypes =
+  "image/png, image/gif, image/jpeg, image/bmp, image/svg+xml";

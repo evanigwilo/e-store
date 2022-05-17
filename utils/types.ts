@@ -1,5 +1,7 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
+import { NextRouter } from "next/router";
 import { RootState } from "@/redux/store";
+import { ImageSlotActionType } from "./constants";
 
 export interface KeyValue<T = string> {
   [key: string | number]: T;
@@ -156,4 +158,30 @@ export interface QueryParams {
   body?: KeyValue<KeyValue>;
   key: number;
   page: number;
+}
+
+export interface ImageSlotState {
+  url: KeyValue;
+  error: KeyValue;
+  file: KeyValue<File | undefined>;
+}
+
+export interface ImageSlotActionPayload {
+  // images?: number[];
+  product?: Partial<Product>;
+  slot?: number;
+  files?: FileList | undefined | null;
+}
+
+export interface ImageSlotAction {
+  type: ImageSlotActionType;
+  payload: ImageSlotActionPayload;
+}
+
+export interface ManageProductProps {
+  filter: string;
+  router: NextRouter;
+  productId: string;
+  updateProduct: (update: ToastStatusUpdate) => void;
+  removeProduct: (id: string) => void;
 }

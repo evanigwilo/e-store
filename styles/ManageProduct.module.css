@@ -1,0 +1,56 @@
+.modal-form > div > div,
+.modal-delete > div > div {
+  border-radius: 0.8rem !important;
+  border: none !important;
+}
+.modal-form > div > div {
+  margin: auto;
+  width: 300px;
+}
+.modal-delete > div {
+  margin: auto;
+  width: 350px;
+  top: 50%;
+}
+.modal-delete {
+  backdrop-filter: brightness(0.8);
+}
+.line-height {
+  line-height: 1;
+}
+
+.image-delete:hover {
+  transform: scale(1.05) !important;
+}
+
+.image-delete:hover:active {
+  transform: scale(1) !important;
+}
+.border-image-style {
+  border-style: dashed !important;
+  padding: 1px !important;
+  /* -webkit-text-stroke: 1px; */
+}
+.border-image-size {
+  height: 70px !important;
+  width: 80px !important;
+}
+.image-delete {
+  transition: all 0.05s ease-out;
+  font-size: 0.6rem !important;
+}
+.image-delete:hover {
+  transform: translate(-50%, -50%) scale(1.1) !important;
+  font-size: 0.7rem !important;
+}
+.image-delete:hover:active {
+  transform: translate(-50%, -50%) scale(1) !important;
+  font-size: 0.6rem !important;
+}
+.image-drag-enter {
+  transform: scale(1.05);
+  background: var(--bs-gray-600);
+  border: 1px solid var(--bs-gray-600);
+  border-radius: 0.25em;
+  color: white;
+}

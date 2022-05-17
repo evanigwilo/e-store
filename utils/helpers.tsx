@@ -10,7 +10,7 @@ import Form from "react-bootstrap/Form";
 
 import axios from "../services/axios";
 import { AuthenticatedResult, KeyValue, Product, QueryParams } from "./types";
-import { debounceId, statusStyle } from "./constants";
+import { debounceId, slotCount, statusStyle } from "./constants";
 
 // 👇 check user authentication status
 export const isUserAuthenticated = async (
@@ -191,3 +191,17 @@ export const inViewStatus = (
     )}
   </div>
 );
+
+// 👇 gets the first (or last) available image in the product
+export const getImageSlot = (product: Partial<Product>, lastSlot = false) => {
+  let slotNumber = 0;
+  slotCount.some((slot) => {
+    if (hasImage(product, slot)) {
+      slotNumber = slot;
+      if (!lastSlot) {
+        return true;
+      }
+    }
+  });
+  return slotNumber;
+};
