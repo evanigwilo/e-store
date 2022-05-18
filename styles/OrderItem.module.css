@@ -1,0 +1,9 @@
+.accordion > button {
+  padding: 10px !important;
+  /* padding-bottom: 5px !important;
+  display: grid;
+  place-items: center; */
+}
+.accordion > button::after {
+  margin: 0 5px !important;
+}

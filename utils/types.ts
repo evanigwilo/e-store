@@ -1,6 +1,7 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import { NextRouter } from "next/router";
 import { RootState } from "@/redux/store";
+import { Color } from "react-bootstrap/esm/types";
 import { ImageSlotActionType } from "./constants";
 
 export interface KeyValue<T = string> {
@@ -185,3 +186,12 @@ export interface ManageProductProps {
   updateProduct: (update: ToastStatusUpdate) => void;
   removeProduct: (id: string) => void;
 }
+
+export type OrderGroup = "all" | "succeeded" | "canceled" | "requested";
+
+export type OrderGroupState = {
+  [key in OrderGroup]: {
+    active: boolean;
+    background: Color;
+  };
+};
