@@ -1,0 +1,82 @@
+.max-width {
+  max-width: 768px;
+}
+.modal-search {
+  height: 100vh !important;
+}
+.modal-search span,
+.modal-search tr,
+.modal-search a {
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 0 !important;
+}
+.modal-search td div {
+  transition: margin 0.3s;
+}
+.modal-search tr:hover td > div {
+  font-weight: bold !important;
+  font-size: 0.83rem !important;
+  margin: 3px 0 !important;
+  color: var(--bs-black) !important;
+  --bs-text-opacity: 0.75;
+  color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
+}
+/* 
+.modal-search td:nth-child(2) div,
+.modal-search td:nth-child(3) div
+ */
+.modal-search td:not(:first-child) div {
+  position: absolute;
+  word-break: break-word;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+.modal-search td:first-child {
+  width: 60%;
+}
+/* 
+.modal-search td:nth-child(2),
+.modal-search td:nth-child(3)
+ */
+.modal-search td:not(:first-child) {
+  position: relative;
+  padding: 0 !important;
+}
+.modal-search > div {
+  max-width: 500px !important;
+  margin-top: 0 !important;
+}
+.modal-search > div > div {
+  overflow: unset !important;
+  /* border: 0 !important; */
+}
+/* #button-filter {
+  vertical-align: middle;
+  display: none !important;
+} */
+.search {
+  padding-left: 2.5rem !important;
+  border-radius: 25px !important;
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .search {
+    padding-left: 0.75rem !important;
+    border-radius: 0.25rem !important;
+  }
+}
+
+/* 
+Medium	md	≥768px
+Large	lg	≥992px 
+*/
+@media (min-width: 768px) {
+  /* .css-container-grid  {
+    grid-template-columns: 1fr 2fr auto;
+  } */
+}
