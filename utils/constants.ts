@@ -84,3 +84,9 @@ export enum ImageSlotActionType {
 
 export const mimeTypes =
   "image/png, image/gif, image/jpeg, image/bmp, image/svg+xml";
+
+export const sortBy = {
+  Popularity: undefined,
+  "Price: Low to High": "low",
+  "Price: High to Low": "high",
+};
