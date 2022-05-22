@@ -90,3 +90,9 @@ export const sortBy = {
   "Price: Low to High": "low",
   "Price: High to Low": "high",
 };
+
+export const userGroups = {
+  "": "None",
+  manage_product_group: "Manage Products",
+  admin_group: "Admin",
+};

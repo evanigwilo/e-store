@@ -18,6 +18,7 @@ import cartSlice from "./reducer/cartSlice";
 import paymentSlice from "./reducer/paymentSlice";
 import productSlice from "./reducer/productSlice";
 import { querySlice } from "./reducer/querySlice";
+import usersSlice from "./reducer/usersSlice";
 
 const rootReducer = combineReducers({
   user: userSlice,
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   ), //cartSlice,
   payment: paymentSlice,
   product: productSlice,
+  users: usersSlice,
   [querySlice.reducerPath]: querySlice.reducer,
 });
 

@@ -195,3 +195,10 @@ export type OrderGroupState = {
     background: Color;
   };
 };
+
+export interface User {
+  username: string;
+  group: keyof typeof userGroups;
+  status: "CONFIRMED";
+  gender: "female" | "male";
+}
