@@ -2,7 +2,7 @@ import { Dispatch, ReactNode, SetStateAction } from "react";
 import { NextRouter } from "next/router";
 import { RootState } from "@/redux/store";
 import { Color } from "react-bootstrap/esm/types";
-import { ImageSlotActionType } from "./constants";
+import { ImageSlotActionType, userGroups } from "./constants";
 
 export interface KeyValue<T = string> {
   [key: string | number]: T;

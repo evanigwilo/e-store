@@ -1,0 +1,14 @@
+.rotate {
+  transition: transform 0.1s ease-in;
+  cursor: pointer;
+}
+.rotate:hover {
+  transform: scale(1.1);
+}
+.css-rotate-180 {
+  transform: rotate(-180deg) !important;
+}
+.row {
+  border-radius: 10px;
+  max-height: 330px;
+}
