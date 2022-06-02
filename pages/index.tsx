@@ -47,7 +47,7 @@ const Home: NextPage = () => {
             </Card.Title>
             <Card.Text>
               <span>
-                {`Copyright © 2022 All rights reserved | Developed by `}
+                {`Copyright © 2022. All rights reserved | Developed by `}
               </span>
               <a
                 className="fw-bold link"

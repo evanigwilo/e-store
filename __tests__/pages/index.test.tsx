@@ -157,7 +157,7 @@ describe("Home", () => {
     expect(screen.getByTitle("Top")).toBeVisible();
 
     expect(
-      screen.getByText("Copyright © 2022 All rights reserved | Developed by")
+      screen.getByText("Copyright © 2022. All rights reserved | Developed by")
     ).toBeVisible();
     const developer = screen.getByText("Evan Igwilo");
     expect(developer).toBeVisible();

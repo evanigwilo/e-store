@@ -153,10 +153,10 @@ const Product: NextComponentType<
             <Col>
               <span>Starting from </span>
               <span className="text-decoration-line-through">
-                {numeral(price).format("$0,0.00")}
+                {numeral(price + price / 4).format("$0,0.00")}
               </span>
 
-              <span className="fw-bold">{` ${numeral(price - price / 4).format(
+              <span className="fw-bold">{` ${numeral(price).format(
                 "$0,0.00"
               )}`}</span>
             </Col>

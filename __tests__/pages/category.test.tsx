@@ -152,12 +152,12 @@ describe("Category", () => {
       expect(product.innerHTML.includes(") ratings<")).toBeTruthy();
       expect(product.innerHTML.includes(">Starting from")).toBeTruthy();
       expect(
-        product.innerHTML.includes(`>${numeral(price).format("$0,0.00")}<`)
+        product.innerHTML.includes(
+          `>${numeral(price + price / 4).format("$0,0.00")}<`
+        )
       ).toBeTruthy();
       expect(
-        product.innerHTML.includes(
-          `> ${numeral(price - price / 4).format("$0,0.00")}<`
-        )
+        product.innerHTML.includes(`> ${numeral(price).format("$0,0.00")}<`)
       ).toBeTruthy();
       expect(product.getElementsByTagName("button")[0].textContent).toEqual(
         "Add To Cart"
